@@ -1,0 +1,9 @@
+2021-02-21 14:36:23,194 INFO c.d.b.DiscordBot [JDA MainWS-ReadThread] The Bot received command from nickname: but10052 , message: /STATS
+2021-02-21 14:36:23,202 INFO c.d.u.Parser [JDA MainWS-ReadThread] method parseJsonToPlayer started working.
+2021-02-21 14:36:23,736 DEBUG c.d.s.i.ReplyMessageServiceImpl [JDA MainWS-ReadThread] Player with nickname null not found.
+2021-02-21 14:36:23,744 INFO c.d.b.DiscordBot [JDA MainWS-ReadThread] The bot sent a reply message.
+2021-02-21 14:36:24,998 INFO c.d.b.DiscordBot [JDA MainWS-ReadThread] The Bot received command from nickname: but10052 , message: /stats
+2021-02-21 14:36:25,000 INFO c.d.s.i.MessageReceiverServiceImpl [JDA MainWS-ReadThread] Request has been created: Query(nickname=but10052, command=STATS_WITHOUT_NICKNAME)
+2021-02-21 14:36:25,006 INFO c.d.u.Parser [JDA MainWS-ReadThread] method parseJsonToPlayer started working.
+2021-02-21 14:36:25,644 DEBUG c.d.s.i.ReplyMessageServiceImpl [JDA MainWS-ReadThread] A player was found: Player(accountId=null, statistic=[Statistic(score=7109, kd=0.75, kills=452, winRatio=0%, winGames=0, games=599, rank=null), Statistic(score=0, kd=0.72, kills=59, winRatio=0%, winGames=0, games=82, rank=null), Statistic(score=1436, kd=0.41, kills=103, winRatio=1.6%, winGames=4, games=256, rank=null)], name=but10052, rank=UNKNOWN)
+2021-02-21 14:36:25,687 INFO c.d.b.DiscordBot [JDA MainWS-ReadThread] The bot sent a reply message.
