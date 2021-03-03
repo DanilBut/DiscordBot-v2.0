@@ -1,7 +1,6 @@
 package com.discord.service;
 
-import com.discord.model.Query;
-import com.discord.model.entity.Player;
+import com.discord.model.Player;
 
 import java.io.IOException;
 
