@@ -1,4 +1,4 @@
-package com.discord.model.entity;
+package com.discord.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

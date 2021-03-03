@@ -1,9 +1,9 @@
 package com.discord.service.handler;
 
 import com.discord.command.Command;
-import com.discord.model.entity.Player;
+import com.discord.model.Player;
 import com.discord.model.Query;
-import com.discord.model.entity.Statistic;
+import com.discord.model.Statistic;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,6 @@ public class StatsTableHandler {
     public StatsTableHandler(Query query) {
         this.query = query;
     }
-
-// создать отдельный класс table
-// представляет собой класс , содержащий инфу об игроке 
 
     public MessageEmbed createTableStats(Player player) {
         Command command = query.getCommand();
@@ -52,15 +49,6 @@ public class StatsTableHandler {
                 + "\n**кол-во игр:** " + statistic.get(count).getGames();
         return info;
     }
-//    private String setStats(Player player, int count) {
-//        String info = "\n**Счёт:** " + player.getStatistic().get(count).getScore()
-//                + "\n**K/D:** " + player.getStatistic().get(count).getKd()
-//                + "\n**Убийств:** " + player.getStatistic().get(count).getKills()
-//                + "\n**% побед:** " + player.getStatistic().get(count).getWinRatio()
-//                + "\n**кол-во побед:** " + player.getStatistic().get(count).getWinGames()
-//                + "\n**кол-во игр:** " + player.getStatistic().get(count).getGames();
-//        return info;
-//    }
 
     private String getTitleText(Command command) {
         String title = "";
