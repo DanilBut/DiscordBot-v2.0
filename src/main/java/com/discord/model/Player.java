@@ -1,4 +1,4 @@
-package com.discord.model.entity;
+package com.discord.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,12 +6,12 @@ import lombok.*;
 
 import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
 
     @JsonProperty(value = "accountId")
