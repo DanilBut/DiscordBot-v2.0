@@ -26,25 +26,29 @@ public class DiscordBotFacade {
         this.query = query;
     }
 
+
     public MessageAction handleEvent(GuildMessageReceivedEvent event) {
         MessageChannel channel = event.getMessage().getChannel();
         MessageAction messageAction = null;
         Message message = event.getMessage();
         Command command = getCommandFromMessage(message);
-        if(command != Command.NON_COMMAND) {
+        if (command != Command.NON_COMMAND) {
             try {
                 String nickname = getNicknameFromMessage(message);
 
                 query.setCommand(command);
                 query.setNickname(nickname);
 
-                messageAction = replyMessageService.getReplyMessage(message);
+                messageAction = replyMessageService.getReplyMessage(event);
+
+
             } catch (NicknameException | NoPvpException | IOException e) {
                 messageAction = channel.sendMessage(e.getMessage());
             }
         }
         return messageAction;
     }
+
 
     private String getNicknameFromMessage(Message msg) {
         String nick = "";
@@ -71,27 +75,6 @@ public class DiscordBotFacade {
         } else {
             command = Command.NON_COMMAND;
         }
-//            switch (arr[0]) {
-//                case "/stats": {
-//                    if (arr.length > 1) {
-//                        command = Command.STATS_WITH_NICKNAME;
-//                    } else {
-//                        command = Command.STATS_WITHOUT_NICKNAME;
-//                    }
-//                    break;
-//                }
-//                case "/pvp": {
-//                    if (arr.length > 1) {
-//                        command = Command.PVP_WITH_NICKNAME;
-//                    } else {
-//                        command = Command.PVP_WITHOUT_NICKNAME;
-//                    }
-//                    break;
-//                }
-//                default: {
-//                    command = Command.NON_COMMAND;
-//                }
-
         return command;
     }
 }
