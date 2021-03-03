@@ -3,19 +3,15 @@ package com.discord.utils;
 import com.discord.bot.config.Config;
 import com.discord.command.Command;
 import com.discord.exception.NoPvpException;
+import com.discord.model.Player;
 import com.discord.model.Query;
-import com.discord.model.entity.Player;
-import com.discord.model.entity.Statistic;
+import com.discord.model.Statistic;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -32,14 +28,12 @@ import java.util.List;
 @PropertySource("classpath:parser.properties")
 public class Parser {
 
-    private Connection connection;
     private Query query;
     private final Logger logger = LoggerFactory.getLogger(Parser.class);
 
 
     @Autowired
-    public Parser(Connection connection, Query query) {
-        this.connection = connection;
+    public Parser(Query query) {
         this.query = query;
     }
 
@@ -56,10 +50,7 @@ public class Parser {
         JsonObject object = element.getAsJsonObject();
 
         List<Statistic> statistics = parseStatistics(object);
-        if (statistics == null) {
-            System.out.println("statistics == null");
-            return null;
-        }
+
         Player player = new Player();
 
         player.setName(nickname);
@@ -70,7 +61,9 @@ public class Parser {
     }
 
     private String findRank(String nickname) throws IOException {
+
         HttpURLConnection con = getConnection(Config.URL_EVENTS + Config.PLATFORM_PC + Config.REGION_EU + nickname);
+
         if (!isFoundEvents(con.getResponseMessage())) {
             return "UNKNOWN";
         }
@@ -81,21 +74,6 @@ public class Parser {
 
     }
 
-    //    private double findRank(String nickname) throws IOException {
-//        Document doc = Jsoup.connect("https://fortnitetracker.com/profile/all/" + nickname.trim() + "/events").get();
-//        Elements el = doc.getElementsByClass("fn-event-team__stat-value");
-//        String rank = el.first().ownText();
-//        System.out.println(rank);
-//        try {
-//            if (Character.isDigit(rank.charAt(0))) {
-//                double rank_ = Double.parseDouble(rank.replace(rank.charAt(rank.indexOf(",")), '.'));
-//                return rank_;
-//            } else
-//                return Double.parseDouble(rank);
-//        } catch (NumberFormatException e) {
-//            return -1;
-//        }
-//    }
     private List<Statistic> parseStatistics(JsonObject object) {
         String[] status = null;
         Command command = query.getCommand();
