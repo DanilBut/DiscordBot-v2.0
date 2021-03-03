@@ -1,6 +1,5 @@
-package com.discord.service.impl;
+package com.discord.bot;
 
-import com.discord.bot.DiscordBot;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +10,21 @@ import javax.annotation.PostConstruct;
 import javax.security.auth.login.LoginException;
 
 @Component
-public class DiscordBotServiceImpl {
+public class DiscordStatsBot {
     @Value("${bot.Token}")
     private String BOT_TOKEN;
 
     private DiscordBot discordBot;
 
     @Autowired
-    public DiscordBotServiceImpl(DiscordBot discordBot) {
+    public DiscordStatsBot(DiscordBot discordBot) {
         this.discordBot = discordBot;
     }
 
 
     @PostConstruct
-    public void startBot()  {
-        JDA jdaBuilder = null;
-        try {
-            jdaBuilder = JDABuilder.createDefault(BOT_TOKEN).build();
-        } catch (LoginException e) {
-            e.printStackTrace();
-        }
+    public void startBot() throws LoginException {
+        JDA jdaBuilder = JDABuilder.createDefault(BOT_TOKEN).build();
         jdaBuilder.addEventListener(discordBot);
     }
 
